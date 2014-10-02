@@ -19,4 +19,14 @@ diceIndex x y = fromIntegral (2*nT) / fromIntegral (nX + nY)
     bX = bigrams x
     bY = bigrams y
 
+hammingDistance [] [] = Just 0
+hammingDistance [] _ = Nothing
+hammingDistance _ [] = Nothing
+hammingDistance (x:xs) (y:ys)
+  | x == y = case hammingDistance xs ys of
+              Nothing -> Nothing
+              Just n -> Just (n+1)
+  | otherwise = hammingDistance xs ys
+
+
 jaroWrinkler sOne sTwo  = undefined

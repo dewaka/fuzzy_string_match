@@ -28,5 +28,11 @@ hammingDistance (x:xs) (y:ys)
               Just n -> Just (n+1)
   | otherwise = hammingDistance xs ys
 
+levenshteinDistance xs [] = length xs
+levenshteinDistance [] ys = length ys
+levenshteinDistance xs@(x:xs') ys@(y:ys') =
+  min m1 (levenshteinDistance xs' ys' + if x==y then 0 else 1)
+  where
+    m1 = min (levenshteinDistance xs ys' + 1) (levenshteinDistance xs' ys + 1)
 
 jaroWrinkler sOne sTwo  = undefined

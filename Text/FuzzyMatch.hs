@@ -28,6 +28,7 @@ hammingDistance (x:xs) (y:ys)
               Just n -> Just (n+1)
   | otherwise = hammingDistance xs ys
 
+-- http://en.wikipedia.org/wiki/Levenshtein_distance
 levenshteinDistance xs [] = length xs
 levenshteinDistance [] ys = length ys
 levenshteinDistance xs@(x:xs') ys@(y:ys') =
@@ -35,4 +36,6 @@ levenshteinDistance xs@(x:xs') ys@(y:ys') =
   where
     m1 = min (levenshteinDistance xs ys' + 1) (levenshteinDistance xs' ys + 1)
 
+
+-- TODO: Implementation should be based on: http://xlinux.nist.gov/dads//HTML/jaroWinkler.html standard.
 jaroWrinkler sOne sTwo  = undefined
